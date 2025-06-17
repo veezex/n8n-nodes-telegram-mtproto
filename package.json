@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-nodes-telegram-mtproto",
   "version": "0.1.0",
   "description": "",
   "keywords": [
@@ -19,14 +19,14 @@
     "node": ">=20.15"
   },
   "main": "index.js",
-  "scripts": {
-    "build": "npx rimraf dist && tsc && gulp build:icons",
-    "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
-  },
+"scripts": {
+  "build": "bun run rimraf dist && bun tsc && bun run gulp build:icons",
+  "dev": "bun tsc --watch",
+  "format": "bun run prettier nodes credentials --write",
+  "lint": "bun run eslint nodes credentials package.json",
+  "lintfix": "bun run eslint nodes credentials package.json --fix",
+  "prepublishOnly": "bun run build && bun run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+},
   "files": [
     "dist"
   ],
