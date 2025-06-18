@@ -21,7 +21,7 @@
 	},
 	"main": "index.js",
 	"scripts": {
-		"version": "bun run version.ts patch && git push && git push --tags",
+		"patch": "bun run version.ts patch",
 		"build": "bun run rimraf dist && bun tsc && bun run gulp build:icons",
 		"dev": "bun tsc --watch",
 		"format": "bun run prettier nodes credentials --write",
