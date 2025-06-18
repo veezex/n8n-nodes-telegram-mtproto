@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-telegram-mtproto",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Telegram MTProto nodes for n8n",
   "keywords": [
     "n8n-community-node-package",
