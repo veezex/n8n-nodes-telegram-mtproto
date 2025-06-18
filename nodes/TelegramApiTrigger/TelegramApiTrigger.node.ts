@@ -1,6 +1,7 @@
-import { INodeType, INodeTypeDescription, NodeConnectionType } from 'n8n-workflow';
-import { description } from './TelegramApiTrigger.description';
+import { ApplicationError, INodeType, INodeTypeDescription, ITriggerFunctions, ITriggerResponse, NodeConnectionType,  } from 'n8n-workflow';
+import { defaultEvents, events } from './TelegramApiTriggerEvents';
 
+// https://docs.n8n.io/integrations/creating-nodes/build/
 export class TelegramApiTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Telegram MTPROTO API Trigger',
@@ -21,14 +22,25 @@ export class TelegramApiTrigger implements INodeType {
 				required: true,
 			},
 		],
-		/**
-		 * In the properties array we have two mandatory options objects required
-		 * [Resource & Operation]
-		 *
-		 * https://docs.n8n.io/integrations/creating-nodes/code/create-first-node/#resources-and-operations
-		 */
 		properties: [
-			...description,
+			{
+				displayName: 'Events',
+				name: 'events',
+				type: 'multiOptions',
+				options: [
+					{
+						name: '*',
+						value: '*',
+					},
+					...events,
+				],
+				// eslint-disable-next-line n8n-nodes-base/node-param-default-wrong-for-multi-options
+				default: defaultEvents,
+			}
 		],
 	};
+
+	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
+		throw new ApplicationError("This node is not yet implemented. Please check back later or contribute to the project if you can help!");
+	}
 }
