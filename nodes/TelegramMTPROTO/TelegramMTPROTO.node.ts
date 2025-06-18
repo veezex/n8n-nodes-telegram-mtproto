@@ -6,11 +6,11 @@ export class TelegramMTPROTO implements INodeType {
 		displayName: 'Telegram MTPROTO',
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-name-miscased
 		name: 'telegramMTPROTO',
-		icon: { light: 'file:telegramMTPROTO.svg', dark: 'file:telegramMTPROTO.svg' },
+		icon: { light: 'file:TelegramMTPROTO.svg', dark: 'file:TelegramMTPROTO.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with HttpBin API',
+		description: 'Interact with Telegram MTPROTO API',
 		defaults: {
 			name: 'Telegram MTPROTO',
 		},
