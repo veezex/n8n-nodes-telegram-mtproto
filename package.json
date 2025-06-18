@@ -21,7 +21,7 @@
 	},
 	"main": "index.js",
 	"scripts": {
-		"patch": "bun version patch && git push && git push --tags",
+		"version": "bun run version.ts patch && git push && git push --tags",
 		"build": "bun run rimraf dist && bun tsc && bun run gulp build:icons",
 		"dev": "bun tsc --watch",
 		"format": "bun run prettier nodes credentials --write",
@@ -44,7 +44,9 @@
 		]
 	},
 	"devDependencies": {
+		"@types/bun": "^1.2.16",
 		"@typescript-eslint/parser": "~8.32.0",
+		"bun": "^1.2.16",
 		"eslint": "^8.57.0",
 		"eslint-plugin-n8n-nodes-base": "^1.16.3",
 		"gulp": "^5.0.0",
