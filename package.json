@@ -36,12 +36,13 @@
     "n8nNodesApiVersion": 1,
     "credentials": [
       "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/HttpBinApi.credentials.js",
+      "dist/credentials/TelegramMTPROTO.credentials.js"
     ],
     "nodes": [
       "dist/nodes/ExampleNode/ExampleNode.node.js",
       "dist/nodes/HttpBin/HttpBin.node.js",
-      "dist/nodes/TelegramMTPROTO/TelegramMTPROTO.node.js"
+      "dist/nodes/TelegramApiTrigger/TelegramApiTrigger.node.js"
     ]
   },
   "devDependencies": {

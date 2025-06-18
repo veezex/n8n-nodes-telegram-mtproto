@@ -1,5 +1,5 @@
 {
-	"node": "n8n-nodes-telegram-mtproto.TelegramMTPROTO",
+	"node": "n8n-nodes-telegram-mtproto.TelegramApiTrigger",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Communication"],
