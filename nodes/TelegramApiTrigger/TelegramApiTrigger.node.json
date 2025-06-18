@@ -1,18 +1,18 @@
 {
-	"node": "n8n-nodes-telegram-mtproto.TelegramApiTrigger",
-	"nodeVersion": "1.0",
-	"codexVersion": "1.0",
-	"categories": ["Communication"],
-	"resources": {
-		"credentialDocumentation": [
-			{
-				"url": "https://core.telegram.org/api/obtaining_api_id"
-			}
-		],
-		"primaryDocumentation": [
-			{
-				"url": "https://core.telegram.org/mtproto"
-			}
-		]
-	}
+  "node": "n8n-nodes-telegram-mtproto.TelegramApiTrigger",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Communication"],
+  "resources": {
+    "credentialDocumentation": [
+      {
+        "url": "https://core.telegram.org/api/obtaining_api_id"
+      }
+    ],
+    "primaryDocumentation": [
+      {
+        "url": "https://core.telegram.org/mtproto"
+      }
+    ]
+  }
 }

@@ -1,4 +1,11 @@
-import { ApplicationError, INodeType, INodeTypeDescription, ITriggerFunctions, ITriggerResponse, NodeConnectionType,  } from 'n8n-workflow';
+import {
+	ApplicationError,
+	INodeType,
+	INodeTypeDescription,
+	ITriggerFunctions,
+	ITriggerResponse,
+	NodeConnectionType,
+} from 'n8n-workflow';
 import { defaultEvents, events } from './TelegramApiTriggerEvents';
 
 // https://docs.n8n.io/integrations/creating-nodes/build/
@@ -36,11 +43,13 @@ export class TelegramApiTrigger implements INodeType {
 				],
 				// eslint-disable-next-line n8n-nodes-base/node-param-default-wrong-for-multi-options
 				default: defaultEvents,
-			}
+			},
 		],
 	};
 
 	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
-		throw new ApplicationError("This node is not yet implemented. Please check back later or contribute to the project if you can help!");
+		throw new ApplicationError(
+			'This node is not yet implemented. Please check back later or contribute to the project if you can help!',
+		);
 	}
 }
