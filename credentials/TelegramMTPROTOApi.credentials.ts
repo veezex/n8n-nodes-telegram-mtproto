@@ -11,7 +11,7 @@ export class TelegramMTPROTOApi implements ICredentialType {
       type: 'string',
       placeholder: '12348745646878',
       default: '',
-      description: 'TBD',
+      description: 'Your API ID from https://my.telegram.org/',
       required: true,
     },
     {
@@ -20,7 +20,7 @@ export class TelegramMTPROTOApi implements ICredentialType {
       type: 'string',
       placeholder: '17d2f8ab587',
       default: '',
-      description: 'TBD',
+      description: 'Your API Hash from https://my.telegram.org/',
       required: true,
     },
     {

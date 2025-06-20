@@ -1,11 +1,17 @@
 {
   "name": "n8n-nodes-telegram-mtproto",
   "version": "0.1.6",
-  "description": "Telegram MTProto nodes for n8n",
+  "description": "Telegram MTPROTO API integration for n8n - Real-time message listening and automation",
   "keywords": [
     "n8n-community-node-package",
     "telegram",
-    "mtproto"
+    "mtproto",
+    "gramjs",
+    "messaging",
+    "automation",
+    "bot",
+    "trigger",
+    "real-time"
   ],
   "license": "MIT",
   "homepage": "",
@@ -27,7 +33,8 @@
     "format": "bun run prettier nodes credentials --write",
     "lint": "bun run eslint nodes credentials package.json",
     "lintfix": "bun run eslint nodes credentials package.json --fix",
-    "prepublishOnly": "bun run build && bun run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "prepublishOnly": "bun run build && bun run lint -c .eslintrc.prepublish.js nodes credentials package.json",
+    "test:connection": "node scripts/test-connection.js"
   },
   "files": [
     "dist"
