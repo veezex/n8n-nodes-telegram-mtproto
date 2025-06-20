@@ -29,7 +29,8 @@ export class TelegramMTPROTOApi implements ICredentialType {
       type: 'string',
       placeholder: '+1234567890',
       default: '',
-      description: 'Your phone number associated with the Telegram account (in international format)',
+      description:
+        'Your phone number associated with the Telegram account (in international format)',
       required: true,
     },
     {
