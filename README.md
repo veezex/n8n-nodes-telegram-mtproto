@@ -25,7 +25,7 @@ npm install n8n-nodes-telegram-mtproto
 
 ## Quick Start
 
-1. Get your Telegram API credentials from https://my.telegram.org/
+1. Get your Telegram API credentials from https://my.telegram.org/apps
 2. Create a "Personal Telegram MTPROTO API" credential in n8n
 3. Add the "Telegram MTPROTO API Trigger" node to your workflow
 4. Configure events to listen for (New Message, Message Edited, etc.)
@@ -56,10 +56,10 @@ You need to create Telegram API credentials to use this node:
 
 ### Prerequisites
 1. A Telegram account
-2. Access to https://my.telegram.org/
+2. Access to https://my.telegram.org/apps
 
 ### Setup Steps
-1. Visit https://my.telegram.org/ and log in
+1. Visit https://my.telegram.org/apps and log in
 2. Click "API Development Tools"
 3. Create a new application (any name is fine)
 4. Save your `api_id` and `api_hash`

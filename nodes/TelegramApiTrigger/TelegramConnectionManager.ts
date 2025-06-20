@@ -2,15 +2,15 @@ import { TelegramClient } from 'telegram';
 import { StringSession } from 'telegram/sessions';
 
 export interface TelegramCredentials {
-  apiId: number;
-  apiHash: string;
-  phoneNumber: string;
+  apiId: string
+  apiHash: string
+  sessionString: string
+  phoneNumber: string
 }
 
 export class TelegramConnectionManager {
   private static instance: TelegramConnectionManager;
   private clients: Map<string, TelegramClient> = new Map();
-  private sessions: Map<string, string> = new Map();
 
   private constructor() {}
 
@@ -36,12 +36,12 @@ export class TelegramConnectionManager {
     }
 
     // Create new client with session (empty string for first time)
-    const sessionString = this.sessions.get(clientKey) || '';
+    const sessionString = credentials.sessionString
     const stringSession = new StringSession(sessionString);
 
     const client = new TelegramClient(
       stringSession,
-      credentials.apiId,
+      parseInt(credentials.apiId, 10),
       credentials.apiHash,
       {
         connectionRetries: 5,
@@ -64,22 +64,8 @@ export class TelegramConnectionManager {
         },
       });
 
-      // Save session for next time if possible
-      try {
-        const session = client.session;
-        if (session && typeof (session as any).save === 'function') {
-          const savedSession = (session as any).save() as string;
-          if (savedSession) {
-            this.sessions.set(clientKey, savedSession);
-          }
-        }
-      } catch (err) {
-        console.warn('Could not save session:', err);
-      }
-
       this.clients.set(clientKey, client);
       return client;
-
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Authentication failed: ${error.message}. Please ensure your credentials are correct and you have authorized this application with Telegram.`);
@@ -109,17 +95,5 @@ export class TelegramConnectionManager {
 
     await Promise.all(disconnectPromises);
     this.clients.clear();
-  }
-
-  // Save session string for later use (for manual setup)
-  saveSession(credentials: TelegramCredentials, sessionString: string): void {
-    const clientKey = this.getClientKey(credentials);
-    this.sessions.set(clientKey, sessionString);
-  }
-
-  // Get saved session string
-  getSession(credentials: TelegramCredentials): string | undefined {
-    const clientKey = this.getClientKey(credentials);
-    return this.sessions.get(clientKey);
   }
 }
