@@ -129,9 +129,3 @@ This project uses Bun as the primary build tool and package manager.
 * [Telegram API Documentation](https://core.telegram.org/api)
 * [Telegram MTPROTO Library](https://github.com/gram-js/gramjs)
 
-## Version History
-
-- **v0.1.8** - Current version with session string authentication support
-- Enhanced credential handling with session string field
-- Improved connection stability and error handling
-
