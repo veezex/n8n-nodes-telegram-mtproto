@@ -118,14 +118,6 @@ export class TelegramApiTrigger implements INodeType {
 
         const messageData = {
           _: 'updateNewMessage',
-          messageId: message.id,
-          text: message.text || message.message || '',
-          date: message.date,
-          senderId: message.senderId?.toString() || message.fromId?.toString(),
-          chatId: message.chatId?.toString() || message.peerId?.toString(),
-          isGroup: event.isGroup || false,
-          isPrivate: event.isPrivate || false,
-          isChannel: event.isChannel || false,
           message: message,
           rawEvent: event,
           // debugInfo: JSON.stringify(event, null, 2),
