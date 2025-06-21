@@ -128,7 +128,7 @@ export class TelegramApiTrigger implements INodeType {
           isChannel: event.isChannel || false,
           message: message,
           rawEvent: event,
-          debugInfo: JSON.stringify(event, null, 2),
+          // debugInfo: JSON.stringify(event, null, 2),
         }
 
         emit(messageData)
