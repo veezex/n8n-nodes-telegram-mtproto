@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-telegram-mtproto",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Telegram MTPROTO API integration for n8n - Real-time message listening and automation",
   "keywords": [
     "n8n-community-node-package",
