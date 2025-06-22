@@ -19,7 +19,7 @@ export class TelegramApiTrigger implements INodeType {
     icon: { light: 'file:TelegramApiTrigger.svg', dark: 'file:TelegramApiTrigger.svg' },
     group: ['trigger'],
     version: 1,
-    description: 'Telegram MTPROTO API Listener',
+    description: 'Listens for new messages from Telegram using MTPROTO API',
     defaults: {
       name: 'Telegram MTPROTO API Trigger',
     },
