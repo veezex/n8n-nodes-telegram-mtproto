@@ -7,7 +7,6 @@ import {
   ITriggerResponse,
   NodeConnectionType,
 } from 'n8n-workflow'
-import { defaultEvents, events } from './TelegramApiTriggerEvents'
 import { TelegramConnectionManager, TelegramCredentials } from './TelegramConnectionManager'
 import { NewMessage, NewMessageEvent } from 'telegram/events'
 
@@ -33,20 +32,20 @@ export class TelegramApiTrigger implements INodeType {
       },
     ],
     properties: [
-      {
-        displayName: 'Events',
-        name: 'events',
-        type: 'multiOptions',
-        options: [
-          {
-            name: '*',
-            value: '*',
-          },
-          ...events,
-        ],
-        // eslint-disable-next-line n8n-nodes-base/node-param-default-wrong-for-multi-options
-        default: defaultEvents,
-      },
+      // {
+      //   displayName: 'Events',
+      //   name: 'events',
+      //   type: 'multiOptions',
+      //   options: [
+      //     {
+      //       name: '*',
+      //       value: '*',
+      //     },
+      //     ...events,
+      //   ],
+      //   // eslint-disable-next-line n8n-nodes-base/node-param-default-wrong-for-multi-options
+      //   default: defaultEvents,
+      // },
     ],
   }
 
@@ -73,8 +72,7 @@ export class TelegramApiTrigger implements INodeType {
     const handleNewMessage = (event: NewMessageEvent) => {
       try {
         const messageData = {
-          event,
-          debug: event.message.getBytes().toJSON(),
+          message: event.message,
         }
 
         emit(messageData)
@@ -124,7 +122,7 @@ export class TelegramApiTrigger implements INodeType {
 
         const manualTestHandler = async (event: NewMessageEvent) => {
           try {
-            await handleNewMessage(event)
+            handleNewMessage(event)
             clearTimeout(timeoutHandler)
             try {
               if (manualEvent) {
