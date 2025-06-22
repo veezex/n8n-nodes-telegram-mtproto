@@ -9,7 +9,7 @@ import {
 } from 'n8n-workflow'
 import { defaultEvents, events } from './TelegramApiTriggerEvents'
 import { TelegramConnectionManager, TelegramCredentials } from './TelegramConnectionManager'
-import { NewMessage } from 'telegram/events'
+import { NewMessage, NewMessageEvent } from 'telegram/events'
 
 // https://docs.n8n.io/integrations/creating-nodes/build/
 export class TelegramApiTrigger implements INodeType {
@@ -47,39 +47,12 @@ export class TelegramApiTrigger implements INodeType {
         // eslint-disable-next-line n8n-nodes-base/node-param-default-wrong-for-multi-options
         default: defaultEvents,
       },
-      {
-        displayName: 'Options',
-        name: 'options',
-        type: 'collection',
-        placeholder: 'Add option',
-        default: {},
-        options: [
-          {
-            displayName: 'Ignore Groups',
-            description: 'Whether to ignore messages from groups',
-            name: 'ignoreGroups',
-            type: 'boolean',
-            default: false,
-          },
-          {
-            displayName: 'Ignore Bots',
-            description: 'Whether to ignore messages from bots',
-            name: 'ignoreBots',
-            type: 'boolean',
-            default: false,
-          },
-        ],
-      },
     ],
   }
 
   async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
     const credentials = (await this.getCredentials('telegramMTPROTOApi')) as TelegramCredentials
-    const selectedEvents = this.getNodeParameter('events', []) as string[]
-    const options = this.getNodeParameter('options', {}) as {
-      ignoreGroups?: boolean
-      ignoreBots?: boolean
-    }
+    // const selectedEvents = this.getNodeParameter('events', []) as string[]
 
     const connectionManager = TelegramConnectionManager.getInstance()
     let client
@@ -97,30 +70,11 @@ export class TelegramApiTrigger implements INodeType {
     }
 
     // Event handler for new messages
-    const handleNewMessage = async (event: any) => {
+    const handleNewMessage = (event: NewMessageEvent) => {
       try {
-        // Extract message data from event
-        const message = event.message || event
-
-        // Apply basic filters
-        if (options.ignoreGroups && event.isGroup) {
-          return
-        }
-
-        // Check if this event type should be processed
-        if (
-          selectedEvents.length > 0 &&
-          !selectedEvents.includes('*') &&
-          !selectedEvents.includes('updateNewMessage')
-        ) {
-          return
-        }
-
         const messageData = {
-          _: 'updateNewMessage',
-          message: message,
-          rawEvent: event,
-          // debugInfo: JSON.stringify(event, null, 2),
+          event,
+          debug: event.message.getBytes().toJSON(),
         }
 
         emit(messageData)
@@ -168,7 +122,7 @@ export class TelegramApiTrigger implements INodeType {
           reject(new Error('Timeout: No message received within 30 seconds'))
         }, 30000)
 
-        const manualTestHandler = async (event: any) => {
+        const manualTestHandler = async (event: NewMessageEvent) => {
           try {
             await handleNewMessage(event)
             clearTimeout(timeoutHandler)
