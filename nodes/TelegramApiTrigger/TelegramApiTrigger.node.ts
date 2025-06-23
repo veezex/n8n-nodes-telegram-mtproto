@@ -73,6 +73,10 @@ export class TelegramApiTrigger implements INodeType {
       try {
         const messageData = {
           message: event.message,
+          isGroup: event.isGroup ?? false,
+          isChannel: event.isChannel,
+          isPrivate: event.isPrivate ?? false,
+          chatId: event.chatId,
         }
 
         emit(messageData)
